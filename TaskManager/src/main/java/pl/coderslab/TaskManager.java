@@ -31,10 +31,10 @@ public class TaskManager {
                     System.exit(0);
                     break;
                 case "add":
-                     add();
+                     add(scanner);
                      break;
                 case "remove":
-                     remove(tasks, chooseNumber());
+                     remove(tasks, chooseNumber(scanner));
                      break;
                 case "list":
                      printTasks(tasks);
@@ -91,8 +91,9 @@ public class TaskManager {
         }
     }
 
-    public static void add (){
-        Scanner scanner = new Scanner(System.in);
+    public static void add (Scanner scanner){
+        scanner = new Scanner(System.in);
+
         System.out.println("Please add task description");
         String description = scanner.nextLine();
         System.out.println("Please add task due date");
@@ -113,8 +114,8 @@ public class TaskManager {
         return false;
     }
 
-    public static int chooseNumber (){
-        Scanner scanner = new Scanner(System.in);
+    public static int chooseNumber (Scanner scanner){
+        scanner = new Scanner(System.in);
         System.out.println("Please select number to remove.");
 
         String number = scanner.nextLine();
@@ -122,6 +123,7 @@ public class TaskManager {
             System.out.println("Incorrect argument passed. Please give number greater or equal 0");
             scanner.nextLine();
         }
+
         return Integer.parseInt(number);
     }
 
@@ -146,7 +148,7 @@ public class TaskManager {
         try{
             Files.write(path, Arrays.asList(tab));
         } catch(IOException e){
-            System.err.println("Problmem z napisem");
+            System.err.println("Problem z napisem");
             e.printStackTrace();
         }
     }
